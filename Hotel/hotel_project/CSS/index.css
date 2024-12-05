@@ -1,0 +1,675 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Reset básico */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background: url('../Media/Morcegos_back.png') no-repeat;
+    background-size: contain;
+    display: flex;
+}
+
+
+/* Estilos da Barra Lateral */
+
+.sidebar {
+    width: 250px;
+    background-color: #2f2f2f;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 100vh;
+    position: sticky;
+}
+
+.sidebar .logo {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.sidebar .logo img {
+    width: 150px;
+    height: 100%;
+    border-radius: 50%;
+    transform: scale(1.3);
+}
+
+.sidebar .logo img:hover {
+    cursor: pointer;
+    transform: scale(1.3);
+    transition: 0.7s ease-in-out;
+}
+
+.sidebar .logo img:not(:hover) {
+    transform: scale(1);
+    transition: 0.7s ease-out;
+}
+
+.sidebar .logo span {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #b3b3b3;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    width: 100%;
+}
+
+.sidebar nav h1 {
+    margin-bottom: 40px;
+}
+
+.sidebar nav ul {
+    font-size: 18px;
+}
+
+.sidebar nav ul li button {
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    border: 0px;
+}
+
+.sidebar nav ul li:hover {
+    border-radius: 12px;
+    background-color: #444;
+    transition: 0.7s ease-in;
+}
+
+.sidebar nav ul li ul {
+    padding-left: 15px;
+    font-size: 0.95em;
+    display: none;
+    position: absolute;
+    left: 0;
+    padding: 0;
+    background-color: #333;
+}
+
+.sidebar.light-mode {
+    background-color: #c0c0c0;
+    color: black;
+}
+
+a {
+    color: #333;
+}
+
+.menu-item {
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+
+/* Estilo do submenu */
+
+.menu-item>li {
+    display: none;
+    transition: 0.7s ease-out;
+    /* Submenu oculto por padrão */
+    margin-top: 15px;
+    padding-left: 20px;
+    /* Espaço entre submenu e próximo menu */
+    transition: max-height 0.7s ease-out, padding 0.7s ease-out;
+}
+
+.menu-item.active>li {
+    display: block;
+    /* Exibir submenu ao clicar */
+    transition: max-height 0.7s ease-in, padding 0.7s ease-in;
+}
+
+.arrow {
+    font-size: 0.8em;
+    float: right;
+    transition: transform 0.3s;
+}
+
+.menu-item.active .arrow {
+    transform: rotate(180deg);
+    /* Rotacionar seta para cima */
+}
+
+
+/* Estilos do Conteúdo Principal */
+
+.content {
+    flex: 1;
+    padding: 30px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+header {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.icons {
+    margin-top: 10px;
+    margin-right: 10px;
+    display: flex;
+    gap: 15px;
+    /* Espaçamento entre os ícones */
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.icons i {
+    font-size: 20px;
+    /* Ajuste o tamanho do ícone conforme necessário */
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+.logo-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.logo-center img {
+    width: 700px;
+    height: auto;
+    filter: drop-shadow(2px 4px 6px black);
+}
+
+#submenu-perfil {
+    display: none;
+    /* Oculto por padrão */
+    position: absolute;
+    top: 40px;
+    /* Ajuste conforme necessário */
+    right: 0;
+    background-color: #fff;
+    border-radius: 12px;
+    min-width: 150px;
+    z-index: 1000;
+}
+
+#submenu-perfil button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+#submenu-perfil button:hover {
+    background-color: #555;
+    color: white;
+    transition: 1s ease-in;
+}
+
+#submenu-perfil button:not(:hover) {
+    background-color: #fff;
+    color: black;
+    transition: 1s ease-out;
+}
+
+.main-content {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    /* Cor de fundo suave */
+    border-radius: 8px;
+    margin: 20px auto;
+}
+
+.main-content p {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.form-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #555;
+    text-align: left;
+}
+
+#Avatar {
+    width: 10%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.form-group input,textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,textarea:focus {
+    border-color: #6c63ff;
+    outline: none;
+}
+
+.form-group .password-toggle {
+    float: right;
+    margin-top: -2rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #444;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #6c63ff;
+}
+
+.table-container {
+    width: 100%;
+    max-width: 1100px;
+    overflow-x: auto;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: white;
+}
+
+.table-container-Reserva {
+    width: 100%;
+    overflow-x: auto;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #6c63ff;
+    color: white;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.status {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.status-disponivel {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-ocupado {
+    background-color: #dc3545;
+    color: white;
+}
+
+.status-manutencao {
+    background-color: #ffc107;
+    color: black;
+}
+
+
+/* Estilizando o input de seleção com borda suave e sombreamento */
+
+input[list="TipoQuarto"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    color: #495057;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    outline: none;
+    margin-top: 50px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+
+/* Efeito hover e foco para o input */
+
+input[list="TipoQuarto"]:hover,
+input[list="TipoQuarto"]:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+}
+
+
+/* Estilo das opções do datalist (não completamente suportado por todos os navegadores) */
+
+datalist option {
+    font-size: 1rem;
+    padding: 8px;
+    color: #495057;
+    background-color: #ffffff;
+}
+
+
+/* Responsividade */
+
+@media (max-width: 576px) {
+    form {
+        padding: 15px;
+    }
+    input[list="TipoQuarto"] {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Styling for the label */
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+/* Styling for the select dropdown */
+
+form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    /* Safari */
+    -moz-appearance: none;
+    /* Firefox */
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Dropdown arrow styling */
+
+form select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+
+/* Option styling */
+
+form select option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+}
+
+
+/* Styling for the submit button */
+
+form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #6c63ff;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #6c63ff;
+    transform: scale(1.02);
+}
+
+
+/* Estilo para o campo de busca */
+
+input[type="search"] {
+    padding: 10px 15px;
+    width: 100%;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+}
+
+
+/* Placeholder estilizado */
+
+input[type="search"]::placeholder {
+    color: #999;
+}
+
+
+/* Foco no campo de busca */
+
+input[type="search"]:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#reserva-form {
+    width: 130%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+#reserva-form .form-group {
+    margin-bottom: 15px;
+}
+
+#reserva-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#reserva-form input:focus{
+    border-color: #6c63ff;
+}
+
+#reserva-form input[type="text"],
+#reserva-form input[type="email"],
+#reserva-form input[type="tel"],
+#reserva-form input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+#reserva-form textarea{
+    width: 100%;
+    max-width: 100%;
+    min-height: 150px;
+    padding: 15px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    color: #333333;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    resize: vertical;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#reserva-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#reserva-form input[type="submit"]:hover {
+    background-color: #6c63ff;
+}
+
+
+#CreateFUNC{
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+#CreateFUNC input[type="text"],
+#CreateFUNC input[type="email"],
+#CreateFUNC input[type="tel"],
+#CreateFUNC input[type="date"],
+#CreateFUNC input[type="select"],
+#CreateFUNC input[type="number"],
+#CreateFUNC input[type="file"]
+{
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+    color: #333;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease;
+}
+
+#CreateFUNC input:focus{
+    border-color: #6c63ff;
+}
+
+#CreateFUNC textarea  {
+        width: 100%;
+        max-width: 100%;
+        min-height: 150px;
+        padding: 15px;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        color: #333333;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        resize: vertical;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+#CreateFUNC textarea:focus{
+    border-color: #6c63ff;
+    outline: none;
+}
+
+#CreateFUNC textarea::placeholder {
+    color: #999999;
+}
+
+#StatusQuarto{
+    margin-top: 15px;
+}
+
+#ImagemQuartoLabel{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
